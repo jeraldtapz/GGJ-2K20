@@ -17,7 +17,7 @@ namespace Modules.Pooling
         private RectTransform parentUITransform;
         private readonly GameCamera gameCamera;
 
-        public PoolManager([Inject(Id = "Main Camera")] GameCamera cam, List<PoolData> poolData)
+        public PoolManager([Inject] GameCamera cam, List<PoolData> poolData)
         {
             objectPoolData = new Dictionary<int, PoolableData>();
             poolableMap = new Dictionary<int, Stack<Poolable>>();

@@ -27,7 +27,7 @@ namespace Modules.SceneSystem
         #region Injected Fields
 
         [Inject] protected readonly SceneLoader SceneLoader = null;
-        [Inject(Id = "Main Camera")] protected readonly GameCamera Cam = null;
+        [Inject] protected readonly GameCamera Cam = null;
         [Inject] protected readonly AudioManager AudioManager = null;
 
         #endregion Injected Fields

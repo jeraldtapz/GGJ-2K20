@@ -9,7 +9,7 @@ namespace Modules.Audio
 {
     public class AudioManager : SerializedMonoBehaviour
     {
-        [Inject(Id = "Main Camera")] private readonly GameCamera mainCamera = null;
+        [Inject] private readonly GameCamera mainCamera = null;
         
         [SerializeField] private List<AudioSource> sfxAudioSources = null;
         [SerializeField] private List<AudioSource> bgmAudioSources = null;

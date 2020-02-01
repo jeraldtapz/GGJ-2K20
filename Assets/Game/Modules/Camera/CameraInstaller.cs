@@ -9,7 +9,7 @@ namespace Modules.CameraSystem
 
         public override void InstallBindings()
         {
-            Container.Bind<GameCamera>().WithId("Main Camera")
+            Container.Bind<GameCamera>()
                 .FromComponentInNewPrefab(mainCamera).AsSingle().NonLazy();
         }
     }

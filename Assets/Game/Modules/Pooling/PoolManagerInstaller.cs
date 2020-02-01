@@ -18,7 +18,7 @@ namespace Modules.Pooling
         public override void InstallBindings()
         {
             Container.Bind<PoolManager>().To<PoolManager>().AsSingle()
-                .WithArguments(poolData).NonLazy();
+                .WithArguments(poolData);
         }
 
         #region Editor Only

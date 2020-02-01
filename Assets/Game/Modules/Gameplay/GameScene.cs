@@ -1,6 +1,7 @@
 ﻿using Game.Modules;
 using Modules.General;
 using Modules.SceneSystem;
+using Modules.Towers;
 using Modules.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Modules.Game
         [SerializeField] private SpawnManager spawnManager = null;
         [SerializeField] private string debugUnitId = string.Empty;
         [SerializeField] private int initialGoldValue = 100;
+
+        [SerializeField] private TowerBehaviour towerBehaviourA = null;
         
 
         private GoldManager goldManager = null;
@@ -37,7 +40,9 @@ namespace Modules.Game
         {
             for (int i = 0; i < quantity; i++)
             {
-                spawnManager.Spawn(debugUnitId).GetComponent<BaseUnit>().SetDirection(Direction.Left);
+                TowerTargetingUnit towerTargetingUnit = spawnManager.Spawn(debugUnitId).GetComponent<TowerTargetingUnit>();
+                towerTargetingUnit.SetDirection(Direction.Left);
+                towerTargetingUnit.SetTargetTower(towerBehaviourA);
                 await new WaitForSeconds(0.5f);
             }
         }

@@ -15,18 +15,8 @@ namespace Gravity
         [SerializeField]
         protected Rigidbody RigidBody = null;
 
-        private void Start()
-        {
-            RigidBody.useGravity = false;
-            myTransform = transform;
-            
-            RigidBody.constraints = RigidbodyConstraints.FreezeRotation;
-        }
-
         public override void Initialize(object data = null)
         {
-            base.Initialize(data);
-            
             RigidBody.useGravity = false;
             myTransform = transform;
             

@@ -836,6 +836,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 822036624}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &988005598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5052095187901732607, guid: b8ab8c3c3c8e6ff4eb7855dbb7cbc71d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1075499041}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &988005599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988005598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570b44c97d00402ca09b265dc21673b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  initialHealth: 100
 --- !u!1001 &1001787694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1237,7 +1265,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064853957}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 100, y: 25, z: 100}
@@ -1444,7 +1472,17 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes:
     - Name: initializables
-      Entry: 6
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Modules.General.IInitializable,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
   canvases: []
   sceneName: Game
@@ -1452,6 +1490,7 @@ MonoBehaviour:
   spawnManager: {fileID: 1157131816}
   debugUnitId: Debug Unit
   initialGoldValue: 100
+  towerBehaviourA: {fileID: 1470667550}
 --- !u!114 &1157131814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,7 +1634,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247450504}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 100, y: 25, z: 100}
@@ -1664,6 +1703,62 @@ Transform:
   m_Father: {fileID: 1157131815}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1470667549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5052095187901732607, guid: b8ab8c3c3c8e6ff4eb7855dbb7cbc71d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037437301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1470667550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470667549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570b44c97d00402ca09b265dc21673b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  initialHealth: 100
+--- !u!1 &1503439372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5052095187901732607, guid: b8ab8c3c3c8e6ff4eb7855dbb7cbc71d,
+    type: 3}
+  m_PrefabInstance: {fileID: 670678916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1503439373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503439372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570b44c97d00402ca09b265dc21673b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  initialHealth: 100
 --- !u!1 &1865349880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,6 +1836,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 45
   cameraInitialOffset: {x: 0, y: 25.4, z: -32.2}
+--- !u!1 &1922271438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5052095187901732607, guid: b8ab8c3c3c8e6ff4eb7855dbb7cbc71d,
+    type: 3}
+  m_PrefabInstance: {fileID: 822036624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1922271439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922271438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570b44c97d00402ca09b265dc21673b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  initialHealth: 100
 --- !u!1 &1990462750
 GameObject:
   m_ObjectHideFlags: 0

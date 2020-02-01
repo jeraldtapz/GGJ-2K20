@@ -18,7 +18,10 @@ namespace Modules.Game
         public Poolable Spawn(string id, bool isAlly = true)
         {
             Poolable poolable = poolManager.Spawn(id, isAlly ? allySpawnPoint.position : enemySpawnPoint.position, spawnParent);
-            poolable.GetComponent<UnitGravityBody>().SetAttractor(attractor);
+
+            UnitGravityBody body = poolable.GetComponent<UnitGravityBody>();
+            body.Initialize();
+            body.SetAttractor(attractor);
 
             return poolable;
         }

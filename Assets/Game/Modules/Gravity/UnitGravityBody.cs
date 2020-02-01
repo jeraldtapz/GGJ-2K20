@@ -11,6 +11,15 @@ namespace Gravity
         private Direction direction = Direction.Right;
 
         protected Vector3 Vector3Cache = default;
+        protected bool ShouldMove = false;
+
+
+        public override void Initialize(object data = null)
+        {
+            base.Initialize(data);
+
+            ShouldMove = true;
+        }
 
         protected override void Update()
         {
@@ -21,6 +30,8 @@ namespace Gravity
 
         protected virtual void FixedUpdate()
         {
+            if (!ShouldMove)
+                return;
             Vector3 worldMove = transform.TransformDirection(Vector3Cache) * Time.fixedDeltaTime;
             RigidBody.MovePosition(RigidBody.position + worldMove);
         }
@@ -28,6 +39,16 @@ namespace Gravity
         public void SetDirection(Direction dir)
         {
             direction = dir;
+        }
+
+        public void SetToMove()
+        {
+            this.ShouldMove = true;
+        }
+
+        public void SetToStop()
+        {
+            ShouldMove = false;
         }
     }
 }

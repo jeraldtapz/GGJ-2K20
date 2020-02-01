@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using Game.Modules;
-using Gravity;
+﻿using Game.Modules;
 using Modules.General;
-using Modules.Pooling;
 using Modules.SceneSystem;
 using Modules.Units;
 using Sirenix.OdinInspector;
@@ -25,6 +22,15 @@ namespace Modules.Game
             
             goldManager = new GoldManager(initialGoldValue, 7.5f);
         }
+        
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.J))
+                SpawnDebugUnitsLeft(1);
+            if(Input.GetKeyDown(KeyCode.K))
+                SpawnDebugUnitsRight(1);
+        }
+
 
         [Button]
         private async void SpawnDebugUnitsLeft(int quantity)

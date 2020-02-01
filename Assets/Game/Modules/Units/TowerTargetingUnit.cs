@@ -7,19 +7,19 @@ namespace Modules.Units
 {
     public class TowerTargetingUnit : BaseUnit
     {
-        [SerializeField] private float stopDistance = 1f;
+        [SerializeField] protected float stopDistance = 1f;
 
-        private TowerBehaviour targetTower = null;
+        protected TowerBehaviour TargetTower = null;
 
         public void SetTargetTower(TowerBehaviour tower)
         {
-            targetTower = tower;
+            TargetTower = tower;
             stopDistance = Random.Range(stopDistance - 2, stopDistance + 2);
         }
 
         protected virtual void Update()
         {
-            if (targetTower == null)
+            if (TargetTower == null)
                 return;
 
             if (GetDistanceToTarget() < stopDistance)
@@ -28,19 +28,19 @@ namespace Modules.Units
             }
         }
 
-        private float GetDistanceToTarget()
+        protected float GetDistanceToTarget()
         {
-            return Mathf.Abs((targetTower.transform.position - transform.position).magnitude);
+            return Mathf.Abs((TargetTower.transform.position - transform.position).magnitude);
         }
 
 #if UNITY_EDITOR
 
         private void OnDrawGizmos()
         {
-            if (targetTower != null)
+            if (TargetTower != null)
             {
                 Gizmos.color = Color.white;
-                Gizmos.DrawLine(transform.position, targetTower.transform.position);
+                Gizmos.DrawLine(transform.position, TargetTower.transform.position);
             }
         }
 #endif

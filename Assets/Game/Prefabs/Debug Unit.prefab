@@ -138,7 +138,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   RigidBody: {fileID: 5297108122667580907}
-  speed: 4
+  speed: 2
 --- !u!114 &-3221758490488032407
 MonoBehaviour:
   m_ObjectHideFlags: 0

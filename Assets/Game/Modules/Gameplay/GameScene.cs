@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using Game.Modules;
 using Gravity;
+using Modules.General;
 using Modules.Pooling;
 using Modules.SceneSystem;
+using Modules.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,15 +14,35 @@ namespace Modules.Game
     {
         [SerializeField] private SpawnManager spawnManager = null;
         [SerializeField] private string debugUnitId = string.Empty;
+        [SerializeField] private int initialGoldValue = 100;
+        
+
+        private GoldManager goldManager = null;
+
+        public override void Initialize(object data = null)
+        {
+            base.Initialize(data);
+            
+            goldManager = new GoldManager(initialGoldValue, 7.5f);
+        }
+
+        [Button]
+        private async void SpawnDebugUnitsLeft(int quantity)
+        {
+            for (int i = 0; i < quantity; i++)
+            {
+                spawnManager.Spawn(debugUnitId).GetComponent<BaseUnit>().SetDirection(Direction.Left);
+                await new WaitForSeconds(0.5f);
+            }
+        }
         
         [Button]
-        private void SpawnDebugUnits(int quantity, bool isRight)
+        private async void SpawnDebugUnitsRight(int quantity)
         {
-            IEnumerable<Poolable> poolables = spawnManager.Spawn(debugUnitId, quantity);
-
-            foreach (Poolable poolable in poolables)
+            for (int i = 0; i < quantity; i++)
             {
-                poolable.GetComponent<UnitGravityBody>().SetDirection(isRight);
+                spawnManager.Spawn(debugUnitId).GetComponent<BaseUnit>().SetDirection(Direction.Right);
+                await new WaitForSeconds(0.5f);
             }
         }
     }

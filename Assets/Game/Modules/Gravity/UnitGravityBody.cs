@@ -1,4 +1,5 @@
 ﻿using System;
+using Modules.General;
 using UnityEngine;
 
 namespace Gravity
@@ -7,7 +8,7 @@ namespace Gravity
     {
         [SerializeField] private float speed = 4f;
 
-        private bool isFacingRight = true;
+        private Direction direction = Direction.Right;
 
         protected Vector3 Vector3Cache = default;
 
@@ -15,7 +16,7 @@ namespace Gravity
         {
             base.Update();
 
-            Vector3Cache.x = speed * (isFacingRight ? 1 : -1);
+            Vector3Cache.x = speed * (direction == Direction.Right ? 1 : -1);
         }
 
         protected virtual void FixedUpdate()
@@ -24,9 +25,9 @@ namespace Gravity
             RigidBody.MovePosition(RigidBody.position + worldMove);
         }
 
-        public void SetDirection(bool isRight)
+        public void SetDirection(Direction dir)
         {
-            isFacingRight = isRight;
+            direction = dir;
         }
     }
 }

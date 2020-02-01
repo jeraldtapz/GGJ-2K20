@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Gravity;
 using Modules.Pooling;
 using UnityEngine;
 using Zenject;
@@ -9,18 +10,17 @@ namespace Modules.Game
     {
         [Inject] private readonly PoolManager poolManager = null;
 
-        [SerializeField] private Transform spawnPoint = null;
+        [SerializeField] private GravityAttractor attractor = null;
+        [SerializeField] private Transform allySpawnPoint = null;
+        [SerializeField] private Transform enemySpawnPoint = null;
         [SerializeField] private Transform spawnParent = null;
         
-        public IEnumerable<Poolable> Spawn(string id, int quantity)
+        public Poolable Spawn(string id, bool isAlly = true)
         {
-            List<Poolable> poolables = new List<Poolable>();
-            for (int i = 0; i < quantity; i++)
-            {
-                poolables.Add(poolManager.Spawn(id, spawnPoint.position, spawnParent));
-            }
+            Poolable poolable = poolManager.Spawn(id, isAlly ? allySpawnPoint.position : enemySpawnPoint.position, spawnParent);
+            poolable.GetComponent<UnitGravityBody>().SetAttractor(attractor);
 
-            return poolables;
+            return poolable;
         }
     }
 }

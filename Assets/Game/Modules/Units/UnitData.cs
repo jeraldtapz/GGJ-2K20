@@ -9,6 +9,8 @@ namespace Modules.Units
         public string Name;
         public int Level;
         public int Price;
+        public int MaxHealth;
+        public int MovementSpeed;
         public Sprite Icon;
     }
 }

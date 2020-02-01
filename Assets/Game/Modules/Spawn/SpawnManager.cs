@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Gravity;
 using Modules.Pooling;
+using Modules.Units;
 using UnityEngine;
 using Zenject;
 
@@ -22,7 +23,6 @@ namespace Modules.Game
             UnitGravityBody body = poolable.GetComponent<UnitGravityBody>();
             body.Initialize();
             body.SetAttractor(attractor);
-
             return poolable;
         }
     }

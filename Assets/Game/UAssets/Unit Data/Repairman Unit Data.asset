@@ -9,11 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77ec8ef53b6e4eae88eb136482c11865, type: 3}
-  m_Name: Repairman
+  m_Script: {fileID: 11500000, guid: 3618081aba1846fb8ad58a4fed75f6db, type: 3}
+  m_Name: Repairman Unit Data
   m_EditorClassIdentifier: 
   UnitRole: 0
-  Name: Repairman
+  Name: Repairwoman
   Level: 1
   Price: 20
+  MaxHealth: 15
+  MovementSpeed: 6
   Icon: {fileID: 0}
+  RepairAmount: 2
+  RepairCooldown: 1
+  HealAmount: 2
+  HealCooldown: 1

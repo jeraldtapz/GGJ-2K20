@@ -1,5 +1,4 @@
-﻿using System;
-using Modules.Towers;
+﻿using Modules.Towers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

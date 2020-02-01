@@ -13,6 +13,8 @@ namespace Gravity
         protected Vector3 Vector3Cache = default;
         protected bool ShouldMove = false;
 
+        public bool IsMoving { get; protected set; } = false;
+
 
         public override void Initialize(object data = null)
         {
@@ -41,14 +43,21 @@ namespace Gravity
             direction = dir;
         }
 
+        public void SetSpeed(float moveSpeed)
+        {
+            speed = moveSpeed;
+        }
+
         public void SetToMove()
         {
-            this.ShouldMove = true;
+            ShouldMove = true;
+            IsMoving = true;
         }
 
         public void SetToStop()
         {
             ShouldMove = false;
+            IsMoving = false;
         }
     }
 }

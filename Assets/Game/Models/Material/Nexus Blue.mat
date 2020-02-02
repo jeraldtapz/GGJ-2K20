@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gear
+  m_Name: Nexus Blue
   m_Shader: {fileID: 4800000, guid: 0e9d5a909a1f7e84882a534d0d11e49f, type: 3}
-  m_ShaderKeywords: _METALLICSPECGLOSSMAP _NORMALMAP
-  m_LightmapFlags: 4
+  m_ShaderKeywords: _EMISSION _METALLICSPECGLOSSMAP _NORMALMAP
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,39 +20,39 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_38168A2D:
-        m_Texture: {fileID: 2800000, guid: dc6c2e3561b79cb4295fc559c0e0eb47, type: 3}
+        m_Texture: {fileID: 2800000, guid: f95addf567542d14eaf1155d91599e8c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_5B127328:
-        m_Texture: {fileID: 2800000, guid: 9b1933c4c287b4a4ba76b1e374cb5887, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6ff67bee2b2d6804092c82aeeae6b06a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_B0386AF7:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: fc61d118ce0823a4d963310cd31955e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_CD8943EA:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e8680ebc6feed0b4ea224dbac4f9f516, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 73b81b54142559f4598cfbcb9a274e8c, type: 3}
+        m_Texture: {fileID: 2800000, guid: a5b1c83bed1b0b7478090eb638310258, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: dc6c2e3561b79cb4295fc559c0e0eb47, type: 3}
+        m_Texture: {fileID: 2800000, guid: f95addf567542d14eaf1155d91599e8c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: fc61d118ce0823a4d963310cd31955e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 73b81b54142559f4598cfbcb9a274e8c, type: 3}
+        m_Texture: {fileID: 2800000, guid: a5b1c83bed1b0b7478090eb638310258, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 6fb435721c1e6284983cdecf24d94436, type: 3}
+        m_Texture: {fileID: 2800000, guid: e8680ebc6feed0b4ea224dbac4f9f516, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: 9b1933c4c287b4a4ba76b1e374cb5887, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6ff67bee2b2d6804092c82aeeae6b06a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -72,20 +72,20 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
-    - _Glossiness: 0
+    - _Glossiness: 1
     - _GlossyReflections: 0
-    - _Metallic: 0
+    - _Metallic: 1
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.067
+    - _Smoothness: 0.246
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _UseAoMap: 0
     - _UseColorMap: 1
-    - _UseEmissiveMap: 0
+    - _UseEmissiveMap: 1
     - _UseMetallicMap: 1
     - _UseNormalMap: 1
     - _UseRoughnessMap: 1
@@ -93,12 +93,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
     - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
---- !u!114 &8588325319177620301
+--- !u!114 &3558102128381892546
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

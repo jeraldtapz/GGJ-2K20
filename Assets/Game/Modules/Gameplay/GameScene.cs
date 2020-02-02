@@ -285,6 +285,7 @@ namespace Modules.Game
                 towerTargetingUnit.SetDirection(Direction.Left);
                 towerTargetingUnit.SetTargetTower(towerManager.GetTowerToDefend(Direction.Left));
                 towerTargetingUnit.GetComponent<UnitGravityBody>().SetReference(transform);
+                towerTargetingUnit.SetTowerManager(towerManager);
                 
                 leftUnits.Add(towerTargetingUnit);
                 await new WaitForSeconds(0.5f);
@@ -303,6 +304,7 @@ namespace Modules.Game
                 towerTargetingUnit.SetDirection(Direction.Right);
                 towerTargetingUnit.SetTargetTower(towerManager.GetTowerToDefend(Direction.Right));
                 towerTargetingUnit.GetComponent<UnitGravityBody>().SetReference(transform);
+                towerTargetingUnit.SetTowerManager(towerManager);
                 
                 rightUnits.Add(towerTargetingUnit);
                 await new WaitForSeconds(0.5f);
@@ -321,6 +323,7 @@ namespace Modules.Game
                 towerTargetingUnit.SetDirection(Direction.Right);
                 towerTargetingUnit.SetTargetTower(towerManager.GetTowerToAttack(Direction.Right));
                 towerTargetingUnit.GetComponent<UnitGravityBody>().SetReference(transform);
+                towerTargetingUnit.SetTowerManager(towerManager);
                 
                 rightUnits.Add(towerTargetingUnit);
                 await new WaitForSeconds(0.5f);
@@ -339,6 +342,7 @@ namespace Modules.Game
                 towerTargetingUnit.SetDirection(Direction.Left);
                 towerTargetingUnit.SetTargetTower(towerManager.GetTowerToAttack(Direction.Left));
                 towerTargetingUnit.GetComponent<UnitGravityBody>().SetReference(transform);
+                towerTargetingUnit.SetTowerManager(towerManager);
 
                 rightUnits.Add(towerTargetingUnit);
                 await new WaitForSeconds(0.5f);

@@ -1158,7 +1158,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   towerId: TowerC
-  initialHealth: 100
+  initialHealth: 50
   towerDirection: 1
   healthFill: {fileID: 2020634773}
 --- !u!1001 &1001787694
@@ -2338,7 +2338,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   towerId: TowerA
-  initialHealth: 100
+  initialHealth: 50
   towerDirection: 0
   healthFill: {fileID: 366004541}
 --- !u!1 &1503439372 stripped

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eedd3f0b8b94fe7ad46af7bb24912f3, type: 3}
   m_Name: Attacker Unit Data
   m_EditorClassIdentifier: 
-  UnitRole: 0
+  UnitRole: 2
   Name: Attacker
   Level: 1
   Price: 20
   MaxHealth: 20
-  MovementSpeed: 3
+  MovementSpeed: 6
   Icon: {fileID: 0}
   AttackAmount: 5
   AttackCooldown: 1

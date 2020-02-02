@@ -37,6 +37,7 @@ namespace Modules.Towers
             if (currentHealth >= 0)
             {
                 currentHealth -= damage;
+                currentHealth = Mathf.Clamp(currentHealth, 0, 100);
                 onHealthChanged.OnNext(currentHealth);
                 healthFill.fillAmount = currentHealth / 100.0f;
             }
@@ -47,6 +48,7 @@ namespace Modules.Towers
             if (currentHealth < 100)
             {
                 currentHealth += repair;
+                currentHealth = Mathf.Clamp(currentHealth, 0, 100);
                 onHealthChanged.OnNext(currentHealth);
                 healthFill.fillAmount = currentHealth / 100.0f;
             }

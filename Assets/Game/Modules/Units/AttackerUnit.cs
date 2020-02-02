@@ -15,6 +15,7 @@ namespace Modules.Units
         
         private Dictionary<int, BaseUnit> defenderMap;
         private Dictionary<int, BaseUnit> repairMap;
+        private Dictionary<int, TowerBehaviour> towerMap;
         private BaseUnit currentTarget;
         private bool isOnAttackUnitsLoop = false;
         
@@ -23,6 +24,7 @@ namespace Modules.Units
             base.Initialize(data);
             defenderMap = new Dictionary<int, BaseUnit>();
             repairMap = new Dictionary<int, BaseUnit>();
+            towerMap = new Dictionary<int, TowerBehaviour>();
         }
         
         public override void SetData<T>(T data)
@@ -31,15 +33,17 @@ namespace Modules.Units
 
             attackerUnitData = data as AttackerUnitData;
         }
+
+        public bool HasUnitsToAttack()
+        {
+            return defenderMap.Count > 0 || repairMap.Count > 0;
+        }
         
         protected override void Update()
         {
-            if (TargetTower == null)
-                return;
-
             if (currentTarget != null)
             {
-                if (isOnAttackUnitsLoop)
+                if (isOnAttackUnitsLoop && !unitGravityBody.IsMoving)
                     return;
                 
                 Vector3 posA = transform.position;
@@ -53,6 +57,10 @@ namespace Modules.Units
                     unitGravityBody.SetToStop();
                     AttackUnitsLoop();
                 }
+                else
+                {
+                    unitGravityBody.SetToMove();
+                }
             }
             else if (defenderMap.Count > 0)
             {
@@ -62,11 +70,12 @@ namespace Modules.Units
             {
                 currentTarget = repairMap.ToArray()[0].Value;
             }
-            else if (unitGravityBody.IsMoving && GetDistanceToTargetTower() < stopDistance)
+            else if ((unitGravityBody.IsMoving || isOnAttackUnitsLoop) && TargetTower != null && GetDistanceToTargetTower() < stopDistance)
             {
+                isOnAttackUnitsLoop = false;
                 unitGravityBody.SetToStop();
                 AttackTowerLoop();
-                // RepairLoop();
+                // RepairLoop();t
             }
         }
         
@@ -110,23 +119,34 @@ namespace Modules.Units
             BaseUnit baseUnit = currentTarget;
             while (!unitGravityBody.IsMoving && CurrentHealth > 0 && currentTarget == baseUnit && currentTarget.CurrentHealth > 0)
             {
+                // if (TargetTower != null)
+                //     return;
+                
                 baseUnit = currentTarget;
                 await new WaitForSeconds(0.5f);
                 print($"Attacked Unit {currentTarget.name} by {attackerUnitData.AttackAmount}");
-                TargetTower.TakeDamage(attackerUnitData.AttackAmount);
+                currentTarget.TakeDamage(attackerUnitData.AttackAmount);
                 await new WaitForSeconds(attackerUnitData.AttackCooldown);
             }
 
             if (currentTarget.CurrentHealth <= 0)
+            {
+                if (currentTarget.Role == UnitRole.Repair)
+                    repairMap.Remove(currentTarget.GetInstanceID());
+                else if (currentTarget.Role == UnitRole.Defend)
+                    defenderMap.Remove(currentTarget.GetInstanceID());
+                
                 currentTarget = null;
+            }
 
-            isOnAttackUnitsLoop = false;
+            TargetTower = TowerManager.GetTowerToAttack(Direction);
+            unitGravityBody.SetToMove();
         }
 
         protected async void AttackTowerLoop()
         {
             TowerBehaviour initialTowerTarget = TargetTower;
-            while (!unitGravityBody.IsMoving && CurrentHealth > 0 && TargetTower == initialTowerTarget && TargetTower.CurrentHealth > 0)
+            while (!unitGravityBody.IsMoving && CurrentHealth > 0 && TargetTower == initialTowerTarget && TargetTower.CurrentHealth > 0 && currentTarget == null)
             {
                 initialTowerTarget = TargetTower;
                 await new WaitForSeconds(0.5f);
@@ -134,6 +154,8 @@ namespace Modules.Units
                 TargetTower.TakeDamage(attackerUnitData.AttackAmount);
                 await new WaitForSeconds(attackerUnitData.AttackCooldown);
             }
+
+            TargetTower = null;
         }
         
         protected float GetDistanceToTargetUnit(Vector3 posA, Vector3 posB)

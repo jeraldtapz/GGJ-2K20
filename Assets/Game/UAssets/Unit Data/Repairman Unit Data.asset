@@ -17,9 +17,9 @@ MonoBehaviour:
   Level: 1
   Price: 20
   MaxHealth: 15
-  MovementSpeed: 6
+  MovementSpeed: 2
   Icon: {fileID: 0}
-  RepairAmount: 2
+  RepairAmount: 6
   RepairCooldown: 1
   HealAmount: 2
   HealCooldown: 1

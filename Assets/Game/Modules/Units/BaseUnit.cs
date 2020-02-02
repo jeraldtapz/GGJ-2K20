@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Common;
 using Gravity;
 using Modules.General;
 using Sirenix.OdinInspector;
@@ -20,6 +21,11 @@ namespace Modules.Units
         protected UnitData UnitData;
         private int currentHealth;
         public int CurrentHealth => currentHealth;
+        private Subject<int> onHealthChanged;
+
+        private Subject<BaseUnit> onDeath;
+        public IObservable<BaseUnit> OnDeath => onDeath;
+        public IObservable<int> OnHealthChanged => onHealthChanged;
         
         public Direction Direction { get; protected set; }
         public UnitRole Role => UnitData.UnitRole;
@@ -35,6 +41,9 @@ namespace Modules.Units
             UnitData = data;
             unitGravityBody.SetSpeed(UnitData.MovementSpeed);
             currentHealth = UnitData.MaxHealth;
+            onHealthChanged = new Subject<int>();
+            onDeath = new Subject<BaseUnit>();
+            OnHealthChange();
         }
 
         public virtual void SetDirection(Direction direction)
@@ -55,6 +64,7 @@ namespace Modules.Units
         protected virtual void OnHealthChange()
         {
             healthFill.fillAmount = CurrentHealth / (float) UnitData.MaxHealth;
+            onHealthChanged.OnNext(CurrentHealth);
         }
 
         [Button]

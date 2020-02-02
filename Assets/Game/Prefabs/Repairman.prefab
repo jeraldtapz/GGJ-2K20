@@ -189,7 +189,7 @@ MonoBehaviour:
   leftScale: {x: -1, y: 1, z: 1}
   rightScale: {x: 1, y: 1, z: 1}
   healthFill: {fileID: 5297108123068823523}
-  stopDistance: 6
+  stopDistance: 4
 --- !u!1 &5297108123068823521
 GameObject:
   m_ObjectHideFlags: 0

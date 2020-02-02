@@ -9,11 +9,17 @@ namespace Modules.Units
         [SerializeField] protected float stopDistance = 1f;
 
         protected TowerBehaviour TargetTower = null;
+        protected TowerManager TowerManager = null;
 
         public void SetTargetTower(TowerBehaviour tower)
         {
             TargetTower = tower;
             stopDistance = Random.Range(stopDistance - 2, stopDistance + 2);
+        }
+
+        public void SetTowerManager(TowerManager tManager)
+        {
+            TowerManager = tManager;
         }
 
         protected virtual void Update()
@@ -29,7 +35,11 @@ namespace Modules.Units
 
         protected float GetDistanceToTargetTower()
         {
-            return Mathf.Abs((TargetTower.transform.position - transform.position).magnitude);
+            Vector3 posA = TargetTower.transform.position;
+            Vector3 posB = transform.position;
+            posA.z = 0;
+            posB.z = 0;
+            return Mathf.Abs((posA - posB).magnitude);
         }
         
 #if UNITY_EDITOR

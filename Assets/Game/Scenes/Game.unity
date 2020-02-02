@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 127411954}
   - component: {fileID: 127411953}
   - component: {fileID: 127411952}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ally Nexus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ BoxCollider:
   m_GameObject: {fileID: 127411951}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -207,7 +207,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127411951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2014,6 +2014,7 @@ MonoBehaviour:
     - {fileID: 1922271439}
     - {fileID: 1817858423}
     - {fileID: 11400000, guid: 82a513357fd1dea4e8ad8960ea179366, type: 2}
+    - {fileID: 11400000, guid: e3fffd26a457d654cbd1a61b52f047a6, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -2060,7 +2061,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -2070,6 +2071,18 @@ MonoBehaviour:
     - Name: $v
       Entry: 10
       Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Attacker
+    - Name: $v
+      Entry: 10
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
@@ -2085,7 +2098,9 @@ MonoBehaviour:
   spawnManager: {fileID: 1157131816}
   towerManager: {fileID: 1817858423}
   debugUnitId: Debug Unit
+  debugAttackUnitId: Attacker
   initialGoldValue: 100
+  enemyNexusTransform: {fileID: 1990462751}
 --- !u!114 &1157131814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2153,8 +2168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractor: {fileID: 1613268921}
-  allySpawnPoint: {fileID: 2115199465}
-  enemySpawnPoint: {fileID: 0}
+  allySpawnPoint: {fileID: 127411955}
+  enemySpawnPoint: {fileID: 1990462751}
   spawnParent: {fileID: 780918209}
 --- !u!1 &1247450504
 GameObject:
@@ -2247,6 +2262,7 @@ Transform:
   m_Children:
   - {fileID: 2115199465}
   - {fileID: 780918209}
+  - {fileID: 2007594081}
   m_Father: {fileID: 1157131815}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2643,7 +2659,7 @@ GameObject:
   - component: {fileID: 1990462754}
   - component: {fileID: 1990462753}
   - component: {fileID: 1990462752}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy Nexus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2673,7 +2689,7 @@ BoxCollider:
   m_GameObject: {fileID: 1990462750}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2684,7 +2700,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990462750}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2724,6 +2740,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990462750}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2007594080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007594081}
+  m_Layer: 0
+  m_Name: SpawnPointEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2007594081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007594080}
+  m_LocalRotation: {x: -0.016378693, y: -0.0039852457, z: -0.08124443, w: 0.99655163}
+  m_LocalPosition: {x: 7.4, y: 54.6, z: -7.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1308374957}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -1.9080001, y: -0.303, z: -9.316}
 --- !u!114 &2020634773 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2135711976168709646, guid: b8ab8c3c3c8e6ff4eb7855dbb7cbc71d,

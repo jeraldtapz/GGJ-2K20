@@ -8,6 +8,7 @@ namespace Modules.Units
         private RepairmanUnitData repairUnitData;
         private WaitForSeconds repairCooldown;
 
+
         public override void SetData<T>(T data)
         {
             base.SetData(data);
@@ -20,7 +21,7 @@ namespace Modules.Units
             if (TargetTower == null)
                 return;
 
-            if (unitGravityBody.IsMoving && GetDistanceToTarget() < stopDistance)
+            if (unitGravityBody.IsMoving && GetDistanceToTargetTower() < stopDistance)
             {
                 unitGravityBody.SetToStop();
                 RepairLoop();
@@ -39,5 +40,6 @@ namespace Modules.Units
                 await new WaitForSeconds(repairUnitData.RepairCooldown);
             }
         }
+        
     }
 }

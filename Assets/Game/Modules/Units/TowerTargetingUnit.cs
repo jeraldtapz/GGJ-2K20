@@ -21,20 +21,20 @@ namespace Modules.Units
             if (TargetTower == null)
                 return;
 
-            if (GetDistanceToTarget() < stopDistance)
+            if (GetDistanceToTargetTower() < stopDistance)
             {
                 unitGravityBody.SetToStop();
             }
         }
 
-        protected float GetDistanceToTarget()
+        protected float GetDistanceToTargetTower()
         {
             return Mathf.Abs((TargetTower.transform.position - transform.position).magnitude);
         }
-
+        
 #if UNITY_EDITOR
 
-        private void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             if (TargetTower != null)
             {

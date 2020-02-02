@@ -18,13 +18,15 @@ namespace Modules.Units
         public string UnitId => unitId;
 
         protected UnitData UnitData;
-        protected int CurrentHealth;
+        private int currentHealth;
+        public int CurrentHealth => currentHealth;
         
         public Direction Direction { get; protected set; }
         public UnitRole Role => UnitData.UnitRole;
 
         public override void Initialize(object data = null)
         {
+            currentHealth = UnitData.MaxHealth;
             OnHealthChange();
         }
 
@@ -32,7 +34,7 @@ namespace Modules.Units
         {
             UnitData = data;
             unitGravityBody.SetSpeed(UnitData.MovementSpeed);
-            CurrentHealth = UnitData.MaxHealth;
+            currentHealth = UnitData.MaxHealth;
         }
 
         public virtual void SetDirection(Direction direction)
@@ -46,16 +48,14 @@ namespace Modules.Units
 
         public void TakeDamage(int damage)
         {
-            CurrentHealth -= damage;
+            currentHealth -= damage;
             OnHealthChange();
         }
-        
 
         protected virtual void OnHealthChange()
         {
             healthFill.fillAmount = CurrentHealth / (float) UnitData.MaxHealth;
         }
-
 
         [Button]
         private void GetId()

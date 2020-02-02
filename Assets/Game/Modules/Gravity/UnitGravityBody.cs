@@ -12,6 +12,7 @@ namespace Gravity
 
         protected Vector3 Vector3Cache = default;
         protected bool ShouldMove = false;
+        protected Transform ReferenceTransform = null;
 
         public bool IsMoving { get; protected set; } = false;
 
@@ -34,6 +35,7 @@ namespace Gravity
         {
             if (!ShouldMove)
                 return;
+            // transform.rotation *= Quaternion.identity;
             Vector3 worldMove = transform.TransformDirection(Vector3Cache) * Time.fixedDeltaTime;
             RigidBody.MovePosition(RigidBody.position + worldMove);
         }
@@ -46,6 +48,11 @@ namespace Gravity
         public void SetSpeed(float moveSpeed)
         {
             speed = moveSpeed;
+        }
+
+        public void SetReference(Transform tForm)
+        {
+            ReferenceTransform = tForm;
         }
 
         public void SetToMove()

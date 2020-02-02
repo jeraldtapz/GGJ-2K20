@@ -32,6 +32,11 @@ namespace Gravity
                 attractor.Attract(myTransform, RigidBody);
         }
 
+        protected void FixedUpdate()
+        {
+            
+        }
+
         public void SetAttractor(GravityAttractor gravityAttractor)
         {
             attractor = gravityAttractor;

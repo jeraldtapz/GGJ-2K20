@@ -73,7 +73,7 @@ namespace Modules.Pooling
         public virtual void Spawn()
         {
             gameObject.SetActive(true);
-            transform.localScale = DefaultScale;
+            // transform.localScale = DefaultScale;
         }
 
         /// <summary>

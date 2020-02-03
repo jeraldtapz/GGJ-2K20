@@ -7,6 +7,8 @@ namespace Modules.Units
     {
         private RepairmanUnitData repairUnitData;
         private WaitForSeconds repairCooldown;
+        private static readonly int Repair = Animator.StringToHash("Repair");
+        private static readonly int Run1 = Animator.StringToHash("Run");
 
 
         public override void SetData<T>(T data)
@@ -31,13 +33,16 @@ namespace Modules.Units
         protected async void RepairLoop()
         {
             TowerBehaviour initialTowerTarget = TargetTower;
+            animator.ResetTrigger(Run1);
+            animator.SetTrigger(Repair);
+
             while (!unitGravityBody.IsMoving && CurrentHealth > 0 && TargetTower == initialTowerTarget && TargetTower.CurrentHealth < 100)
             {
                 initialTowerTarget = TargetTower;
                 await new WaitForSeconds(0.5f);
                 print($"Repaired tower {TargetTower.name} by {repairUnitData.RepairAmount}");
                 TargetTower.Repair(repairUnitData.RepairAmount);
-                await new WaitForSeconds(repairUnitData.RepairCooldown);
+                // await new WaitForSeconds(repairUnitData.RepairCooldown);
             }
         }
         

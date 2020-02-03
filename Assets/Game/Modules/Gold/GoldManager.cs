@@ -43,6 +43,11 @@ namespace Game.Modules
             }
         }
 
+        public void Take(int value)
+        {
+            Gold -= value;
+        }
+
         public void DisableGoldGeneration()
         {
             shouldGenerateGold = false;

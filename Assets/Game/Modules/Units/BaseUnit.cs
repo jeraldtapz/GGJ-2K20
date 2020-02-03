@@ -15,6 +15,7 @@ namespace Modules.Units
         [SerializeField] private Vector3 leftScale = default;
         [SerializeField] private Vector3 rightScale = default;
         [SerializeField] private Image healthFill = null;
+        [SerializeField] protected Animator animator = null;
 
         public string UnitId => unitId;
 
@@ -24,6 +25,9 @@ namespace Modules.Units
         private Subject<int> onHealthChanged;
 
         private Subject<BaseUnit> onDeath;
+        private static readonly int Death = Animator.StringToHash("Death");
+        private static readonly int Run = Animator.StringToHash("Run");
+        private static readonly int Repair = Animator.StringToHash("Repair");
         public IObservable<BaseUnit> OnDeath => onDeath;
         public IObservable<int> OnHealthChanged => onHealthChanged;
         
@@ -50,6 +54,10 @@ namespace Modules.Units
         {
             unitGravityBody.SetDirection(direction);
             unitGravityBody.SetToMove();
+            
+            animator.ResetTrigger(Repair);
+            animator.SetTrigger(Run);
+            
             Direction = direction;
 
             transform.localScale = direction == Direction.Left ? leftScale : rightScale;
@@ -58,13 +66,24 @@ namespace Modules.Units
         public void TakeDamage(int damage)
         {
             currentHealth -= damage;
+
+            currentHealth = Mathf.Clamp(currentHealth, 0, UnitData.MaxHealth);
+            
             OnHealthChange();
         }
 
-        protected virtual void OnHealthChange()
+        protected virtual async void OnHealthChange()
         {
             healthFill.fillAmount = CurrentHealth / (float) UnitData.MaxHealth;
             onHealthChanged.OnNext(CurrentHealth);
+
+            if (currentHealth == 0)
+            {
+                animator.SetTrigger(Death);
+                await new WaitForSeconds(0.5f);
+                gameObject.SetActive(false);
+                // Destroy(gameObject);
+            }
         }
 
         [Button]

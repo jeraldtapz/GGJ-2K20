@@ -59,22 +59,28 @@ namespace Modules.Towers
         }
 
 
-        public TowerBehaviour GetTowerToAttack(Direction dir)
+        public TowerBehaviour GetTowerToAttack(Direction dir, bool skip = false)
         {
             if (dir == Direction.Left)
             {
-                if (towerD.CurrentHealth > 0)
-                    return towerD;
+                if (skip)
+                {
+                    
+                }
+                else
+                {
+                    if (towerD.CurrentHealth > 0)
+                        return towerD;
 
-                if (towerC.CurrentHealth > 0)
-                    return towerC;
+                    if (towerC.CurrentHealth > 0)
+                        return towerC;
 
-                if (towerB.CurrentHealth > 0)
-                    return towerB;
+                    if (towerB.CurrentHealth > 0)
+                        return towerB;
 
-                if (towerA.CurrentHealth > 0)
-                    return towerA;
-                
+                    if (towerA.CurrentHealth > 0)
+                        return towerA;
+                }
                 Debug.Log($"All towers are dead! Enemies Win!");
                 return null;
             }

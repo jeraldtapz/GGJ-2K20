@@ -19,5 +19,5 @@ MonoBehaviour:
   MaxHealth: 20
   MovementSpeed: 6
   Icon: {fileID: 0}
-  AttackAmount: 5
+  AttackAmount: 7
   AttackCooldown: 1

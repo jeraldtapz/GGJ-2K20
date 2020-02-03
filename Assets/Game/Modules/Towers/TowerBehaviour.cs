@@ -4,6 +4,7 @@ using Modules.General;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Modules.Towers
 {
@@ -13,6 +14,7 @@ namespace Modules.Towers
         [SerializeField] private int initialHealth = 100;
         [SerializeField] private Direction towerDirection = Direction.Left;
         [SerializeField] private Image healthFill = null;
+        [SerializeField] private GameObject[] effects = null;
         
         [ShowInInspector]
         private int currentHealth;
@@ -30,6 +32,8 @@ namespace Modules.Towers
             onHealthChanged = new Subject<int>();
             currentHealth = initialHealth;
             healthFill.fillAmount = currentHealth / 100.0f;
+            
+            effects[Random.Range(0, effects.Length)].SetActive(true);
         }
 
         public void TakeDamage(int damage)

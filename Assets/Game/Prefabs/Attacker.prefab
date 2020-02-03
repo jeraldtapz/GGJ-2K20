@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 8925608080464986583}
   - component: {fileID: 8925608080464986582}
   - component: {fileID: 5584213751895605621}
+  - component: {fileID: 554952971}
   m_Layer: 8
   m_Name: Attacker
   m_TagString: Untagged
@@ -400,8 +401,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3a949138a330c9a4687b581af001d358, type: 3}
-  m_Color: {r: 1, g: 0.5691801, b: 0.5235849, a: 1}
+  m_Sprite: {fileID: 3867396653132866935, guid: b9a4388c7c1b27846a5db363b1e4ad73,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -489,8 +491,9 @@ MonoBehaviour:
   leftScale: {x: 1, y: 1, z: 1}
   rightScale: {x: -1, y: 1, z: 1}
   healthFill: {fileID: 8925608079254178752}
+  animator: {fileID: 554952971}
   stopDistance: 4
-  attackRange: 2
+  attackRange: 3.5
   aggroRange: 6
 --- !u!135 &8925608080464986582
 SphereCollider:
@@ -503,7 +506,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 12
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5584213751895605621
 MonoBehaviour:
@@ -529,3 +532,22 @@ MonoBehaviour:
   id: Attacker
   isUi: 0
   animator: {fileID: 0}
+--- !u!95 &554952971
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8925608080464986580}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 814fcdc1fc4301d4db94e6e715ceaea2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

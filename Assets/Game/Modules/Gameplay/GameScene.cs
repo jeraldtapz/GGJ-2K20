@@ -4,17 +4,21 @@ using Core.Common;
 using Game.Modules;
 using Gravity;
 using Modules.General;
-using Modules.SceneSystem;
 using Modules.Towers;
 using Modules.Units;
 using Sirenix.OdinInspector;
-using UnityEditor;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
+using Scene = Modules.SceneSystem.Scene;
 
 namespace Modules.Game
 {
     public class GameScene : Scene
     {
+        [SerializeField] private TextMeshProUGUI goldValue = null;
         [SerializeField] private SpawnManager spawnManager = null;
         [SerializeField] private TowerManager towerManager = null;
         [SerializeField] private string debugUnitId = string.Empty;
@@ -22,15 +26,53 @@ namespace Modules.Game
         [SerializeField] private int initialGoldValue = 100;
         [SerializeField] private Transform enemyNexusTransform = null;
         [SerializeField] private Dictionary<string, UnitData> unitDataMap = null;
+        [SerializeField] private TextMeshProUGUI winLabel = null;
+        [SerializeField] private GameObject winPanel = null;
 
         private List<BaseUnit> leftUnits;
         private List<BaseUnit> rightUnits;
         
         private GoldManager goldManager = null;
+        private bool shouldSpawn = true;
+        private float spawnTimer = 0f;
 
         private async void Awake()
         {
             await InitializeAsync();
+            SpawnInIntervals();
+        }
+        
+        private async void SpawnInIntervals()
+        {
+            float randomTimer = Random.Range(7, 9f);
+            SpawnAttackUnitsLeft(2);
+            SpawnAttackUnitsRight(1);
+            
+            while (shouldSpawn)
+            {
+                spawnTimer += Time.deltaTime;
+
+                if (spawnTimer >= randomTimer)
+                {
+                    spawnTimer = 0f;
+                    randomTimer = Random.Range(6f, 8f);
+                    int quantity = Random.Range(0, 2);
+                    for (int i = 0; i < quantity; i++)
+                    {
+                        if (Random.Range(0f, 1f) > 0.5f)
+                        {
+                            SpawnAttackUnitsRight(1);
+                        }
+                        else
+                        {
+                            SpawnAttackUnitsLeft(1);
+                        }
+
+                        await new WaitForSeconds(0.5f);
+                    }
+                }
+                await new WaitForUpdate();
+            }
         }
 
         public override void Initialize(object data = null)
@@ -39,7 +81,7 @@ namespace Modules.Game
             
             leftUnits  = new List<BaseUnit>();
             rightUnits = new List<BaseUnit>();
-            goldManager = new GoldManager(initialGoldValue, 7.5f);
+            goldManager = new GoldManager(initialGoldValue, 4f);
             
             Disposables.Add(towerManager.OnTowerDestroyed.Subscribe(x =>
             {
@@ -249,18 +291,48 @@ namespace Modules.Game
             }
         }
 
-        private void Lose()
+        private async void Lose()
         {
+            DestroyEverything();
+            winPanel.SetActive(true);
+            winLabel.text = "You Lose!";
             print($"Lose!");
+            await new WaitForSeconds(3f);
+            SceneManager.LoadScene(0);
         }
 
-        private void Win()
+        private async void Win()
         {
+            DestroyEverything();
+            winPanel.SetActive(true);
+            winLabel.text = "You Win!!";
             print($"Win!");
+
+            await new WaitForSeconds(3f);
+            SceneManager.LoadScene(0);
+        }
+
+        private void DestroyEverything()
+        {
+            foreach (BaseUnit rightUnit in rightUnits)
+            {
+                rightUnit.gameObject.SetActive(false);
+            }
+
+            rightUnits.Clear();
+
+            foreach (BaseUnit leftUnit in leftUnits)
+            {
+                leftUnit.gameObject.SetActive(false);
+            }
+
+            leftUnits.Clear();
         }
 
         private void Update()
         {
+            goldValue.text = goldManager.Gold.ToString();
+            
             if(Input.GetKeyDown(KeyCode.J))
                 SpawnDebugUnitsLeft(1);
             if(Input.GetKeyDown(KeyCode.K))
@@ -271,6 +343,24 @@ namespace Modules.Game
             
             if(Input.GetKeyDown(KeyCode.Z))
                 SpawnAttackUnitsLeft(1);
+        }
+
+        public void SpawnLeft()
+        {
+            if (goldManager.Gold > 20)
+            {
+                SpawnDebugUnitsLeft(1);
+                goldManager.Take(20);
+            }
+        }
+
+        public void SpawnRight()
+        {
+            if (goldManager.Gold > 20)
+            {
+                SpawnDebugUnitsRight(1);
+                goldManager.Take(20);
+            }
         }
 
 
@@ -344,7 +434,7 @@ namespace Modules.Game
                 towerTargetingUnit.GetComponent<UnitGravityBody>().SetReference(transform);
                 towerTargetingUnit.SetTowerManager(towerManager);
 
-                rightUnits.Add(towerTargetingUnit);
+                leftUnits.Add(towerTargetingUnit);
                 await new WaitForSeconds(0.5f);
             }
         }

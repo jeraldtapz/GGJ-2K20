@@ -13,6 +13,7 @@ namespace Gravity
         protected Vector3 Vector3Cache = default;
         protected bool ShouldMove = false;
         protected Transform ReferenceTransform = null;
+        
 
         public bool IsMoving { get; protected set; } = false;
 
